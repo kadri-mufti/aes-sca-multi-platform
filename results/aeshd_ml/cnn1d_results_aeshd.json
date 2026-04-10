@@ -1,0 +1,13 @@
+{
+  "method": "1D Convolutional Neural Network",
+  "dataset": "AES-HD FPGA",
+  "epochs": 1,
+  "batch_size": 32,
+  "n_profiling_traces": 500,
+  "n_attack_traces": 2000,
+  "trace_length_samples": 1250,
+  "best_recovered_key_byte_7": "0x4A",
+  "key_rank": 1,
+  "seed": 42,
+  "convergence_ranks": []
+}

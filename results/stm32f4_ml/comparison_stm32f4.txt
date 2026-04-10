@@ -1,0 +1,94 @@
+================================================================================
+STM32F4 ML Methods Comparison Report
+================================================================================
+
+Summary Table:
+--------------------------------------------------------------------------------
+Method                    Bytes OK     Avg Rank     Best     Worst   
+--------------------------------------------------------------------------------
+Random-Forest-with-Feature-Selection        0.0%       0.00       0      0
+cached_models_results_stm32f4        0.0%       0.00       0      0
+1D-Convolutional-Neural-Network        0.0%      41.00      41     41
+Random-Forest                    0.0%     156.75     115    218
+Support-Vector-Machine           0.0%     179.75      48    255
+--------------------------------------------------------------------------------
+
+Detailed Results:
+================================================================================
+
+Method: Random-Forest-with-Feature-Selection
+  Dataset: STM32F4
+  Parameters:
+    n_bytes_evaluated: 2
+    baseline_full_traces: {'ranks': [169, 164], 'avg_rank': 166.5}
+    pca_results: {'10': [102.0, 149.0], '30': [194.0, 249.0], '50': [93.0, 215.0], '100': [82.0, 213.0], '200': [63.0, 167.0]}
+    mi_results: {'50': [199.0, 151.0], '100': [127.0, 228.0], '200': [141.0, 131.0], '500': [102.0, 240.0]}
+    variance_results: {'75': [41.0, 154.0], '85': [50.0, 124.0], '95': [46.0, 186.0]}
+  Key Ranks: 0/16 recovered correctly
+    Average: 0.00
+    Best:    0
+    Worst:   0
+
+Method: cached_models_results_stm32f4
+  Dataset: STM32F4
+  Parameters:
+    script: main_models_cached_stm32f4.py
+    bytes_evaluated: [0, 1, 2, 3]
+    rf: {'key_ranks': {'0': 1, '1': 1, '2': 1, '3': 1}, 'avg_rank': 1.0, 'artifacts': ['..\\results\\stm32f4_ml\\models\\rf_byte_0.pkl', '..\\results\\stm32f4_ml\\models\\rf_byte_1.pkl', '..\\results\\stm32f4_ml\\models\\rf_byte_2.pkl', '..\\results\\stm32f4_ml\\models\\rf_byte_3.pkl']}
+    svm: {'key_ranks': {'0': 1, '1': 1, '2': 1, '3': 1}, 'avg_rank': 1.0, 'artifacts': ['..\\results\\stm32f4_ml\\models\\svm_byte_0.pkl', '..\\results\\stm32f4_ml\\models\\svm_byte_1.pkl', '..\\results\\stm32f4_ml\\models\\svm_byte_2.pkl', '..\\results\\stm32f4_ml\\models\\svm_byte_3.pkl']}
+    cnn: {'byte': 0, 'key_rank': 1, 'artifact': '..\\results\\stm32f4_ml\\models\\cnn_byte_0.keras', 'epochs': 25, 'batch_size': 32}
+  Key Ranks: 0/16 recovered correctly
+    Average: 0.00
+    Best:    0
+    Worst:   0
+
+Method: 1D-Convolutional-Neural-Network
+  Dataset: STM32F4
+  Parameters:
+    epochs: 1
+    batch_size: 32
+    n_training: 2000
+    n_test: 2000
+    trace_window_samples: 2000
+    evaluated_bytes: [0]
+  Key Ranks: 0/16 recovered correctly
+    Average: 41.00
+    Best:    41
+    Worst:   41
+
+Method: Random-Forest
+  Dataset: STM32F4
+  Parameters:
+    n_estimators: 100
+    max_depth: 30
+    n_training: 8000
+    n_test: 2000
+    trace_window_samples: 2000
+    evaluated_bytes: [0, 1, 2, 3]
+  Key Ranks: 0/16 recovered correctly
+    Average: 156.75
+    Best:    115
+    Worst:   218
+
+Method: Support-Vector-Machine
+  Dataset: STM32F4
+  Parameters:
+    kernel: linear
+    C: 1.0
+    gamma: scale
+    n_training: 500
+    n_test: 2000
+    trace_window_samples: 2000
+    evaluated_bytes: [0, 1, 2, 3]
+  Key Ranks: 0/16 recovered correctly
+    Average: 179.75
+    Best:    48
+    Worst:   255
+
+================================================================================
+Recommendation:
+================================================================================
+Best performing method: Random-Forest-with-Feature-Selection
+  Average Key Rank: 0.00
+  Bytes Fully Recovered: 0/16
+

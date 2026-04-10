@@ -1,0 +1,7 @@
+method,metric,value,recovered_byte7,source
+RF,key_rank(byte7),1,0xC6,rf_results_aeshd.json
+SVM,key_rank(byte7),1,0x4A,svm_results_aeshd.json
+CNN1D,key_rank(byte7),1,0x4A,cnn1d_results_aeshd.json
+RF-CACHED,key_rank(byte7),1,0xE8,cached_models_results_aeshd.json
+SVM-CACHED,key_rank(byte7),1,0x89,cached_models_results_aeshd.json
+CNN-CACHED,key_rank(byte7),1,0x4A,cached_models_results_aeshd.json

@@ -1,0 +1,78 @@
+================================================================================
+AES-HD FPGA ML Methods Comparison Report
+================================================================================
+
+Summary Table (Last-Round Key Byte 7):
+--------------------------------------------------------------------------------
+Method                    Recovered Key      Initial Rank    Final Rank     
+--------------------------------------------------------------------------------
+1D-Convolutional-Neural-Network 0x4A               1               1              
+Random-Forest             0xC6               1               1              
+Support-Vector-Machine    0x4A               1               1              
+cached_models_results_aeshd 0xE8               1               1              
+--------------------------------------------------------------------------------
+
+Detailed Results:
+================================================================================
+
+Method: 1D-Convolutional-Neural-Network
+  Dataset: AES-HD FPGA
+  Configuration:
+    batch_size: 32
+    epochs: 1
+    n_attack_traces: 2000
+    n_profiling_traces: 500
+    trace_length_samples: 1250
+  Recovery:
+    Best key (byte 7): 0x4A
+    Initial rank: 1
+    Final rank: 1
+
+Method: Random-Forest
+  Dataset: AES-HD FPGA
+  Configuration:
+    max_depth: 30
+    n_attack_traces: 2000
+    n_estimators: 40
+    n_profiling_traces: 2000
+    trace_length_samples: 1250
+  Recovery:
+    Best key (byte 7): 0xC6
+    Initial rank: 1
+    Final rank: 1
+
+Method: Support-Vector-Machine
+  Dataset: AES-HD FPGA
+  Configuration:
+    C: 1.0
+    gamma: scale
+    kernel: linear
+    n_attack_traces: 2000
+    n_profiling_traces: 500
+    trace_length_samples: 1250
+  Recovery:
+    Best key (byte 7): 0x4A
+    Initial rank: 1
+    Final rank: 1
+
+Method: cached_models_results_aeshd
+  Dataset: AES-HD
+  Configuration:
+    cnn: {'best_recovered_key_byte_7': '0x4A', 'key_rank': 1, 'artifact': '..\\results\\aeshd_ml\\models\\cnn_aeshd.keras', 'epochs': 10, 'batch_size': 32}
+    rf: {'best_recovered_key_byte_7': '0xE8', 'key_rank': 1, 'artifact': '..\\results\\aeshd_ml\\models\\rf_aeshd.pkl'}
+    script: main_models_cached_aeshd.py
+    svm: {'best_recovered_key_byte_7': '0x89', 'key_rank': 1, 'artifact': '..\\results\\aeshd_ml\\models\\svm_aeshd.pkl'}
+  Recovery:
+    Best key (byte 7): 0xE8
+    Initial rank: 1
+    Final rank: 1
+
+================================================================================
+Recommendation:
+================================================================================
+Best performing method: 1D-Convolutional-Neural-Network
+  Final Key Rank: 1
+  Recovered Key Byte 7: 0x4A
+
+Note: AES-HD has weak Hamming Distance leakage.
+Higher key ranks are expected compared to strong HW leakage datasets.

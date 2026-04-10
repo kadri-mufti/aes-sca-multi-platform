@@ -1,0 +1,23 @@
+{
+  "method": "Random Forest",
+  "dataset": "STM32F4",
+  "n_estimators": 100,
+  "max_depth": 30,
+  "n_training": 8000,
+  "n_test": 2000,
+  "trace_window_samples": 2000,
+  "key_ranks": {
+    "0": 117,
+    "1": 115,
+    "2": 218,
+    "3": 177
+  },
+  "correctly_recovered": 0,
+  "evaluated_bytes": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seed": 42
+}

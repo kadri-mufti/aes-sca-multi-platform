@@ -1,0 +1,80 @@
+{
+  "run_context": {
+    "mode": "fast_debug_mode",
+    "notes": [
+      "STM32F4 and AES-HD experiments executed with reduced trace/epoch settings for completion speed.",
+      "AES-HD scripts auto-enabled fast mode for large datasets.",
+      "Metrics are still useful for relative method behavior but are not full-budget final benchmarks."
+    ]
+  },
+  "stm32f4": {
+    "rf": {
+      "evaluated_bytes": [0, 1, 2, 3],
+      "key_ranks": {"0": 117, "1": 115, "2": 218, "3": 177},
+      "avg_key_rank": 156.75,
+      "best_key_rank": 115,
+      "worst_key_rank": 218,
+      "correctly_recovered": 0
+    },
+    "svm_linear": {
+      "evaluated_bytes": [0, 1, 2, 3],
+      "key_ranks": {"0": 209, "1": 48, "2": 255, "3": 207},
+      "avg_key_rank": 179.75,
+      "best_key_rank": 48,
+      "worst_key_rank": 255,
+      "correctly_recovered": 0
+    },
+    "cnn1d": {
+      "evaluated_bytes": [0],
+      "key_ranks": {"0": 41},
+      "avg_key_rank": 41.0,
+      "best_key_rank": 41,
+      "worst_key_rank": 41,
+      "correctly_recovered": 0
+    },
+    "feature_selection_rf": {
+      "n_bytes_evaluated": 2,
+      "baseline_full_avg_rank": 166.5,
+      "best_pca_avg_rank": 115.0,
+      "best_mi_avg_rank": 136.0,
+      "best_variance_avg_rank": 87.0
+    }
+  },
+  "aeshd": {
+    "rf": {
+      "best_recovered_key_byte_7": "0xC6",
+      "key_rank": 1,
+      "n_profiling_traces": 2000,
+      "n_attack_traces": 2000
+    },
+    "svm_linear": {
+      "best_recovered_key_byte_7": "0x4A",
+      "key_rank": 1,
+      "n_profiling_traces": 500,
+      "n_attack_traces": 2000
+    },
+    "cnn1d": {
+      "best_recovered_key_byte_7": "0x4A",
+      "key_rank": 1,
+      "n_profiling_traces": 500,
+      "n_attack_traces": 2000
+    }
+  },
+  "artifact_index": {
+    "stm32f4": [
+      "results/stm32f4_ml/rf_results_stm32f4.json",
+      "results/stm32f4_ml/svm_results_stm32f4.json",
+      "results/stm32f4_ml/cnn1d_results_stm32f4.json",
+      "results/stm32f4_ml/feature_selection_results_stm32f4.json",
+      "results/stm32f4_ml/comparison_stm32f4.txt",
+      "results/stm32f4_ml/comparison_stm32f4_all_methods.png"
+    ],
+    "aeshd": [
+      "results/aeshd_ml/rf_results_aeshd.json",
+      "results/aeshd_ml/svm_results_aeshd.json",
+      "results/aeshd_ml/cnn1d_results_aeshd.json",
+      "results/aeshd_ml/comparison_aeshd.txt",
+      "results/aeshd_ml/comparison_aeshd_all_methods.png"
+    ]
+  }
+}

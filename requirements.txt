@@ -1,0 +1,10 @@
+chipwhisperer
+h5py
+matplotlib
+numpy
+pycryptodome
+pyvisa
+scipy
+scikit-learn
+tqdm
+tensorflow

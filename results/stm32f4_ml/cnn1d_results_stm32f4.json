@@ -1,0 +1,17 @@
+{
+  "method": "1D Convolutional Neural Network",
+  "dataset": "STM32F4",
+  "epochs": 1,
+  "batch_size": 32,
+  "n_training": 2000,
+  "n_test": 2000,
+  "trace_window_samples": 2000,
+  "key_ranks": {
+    "0": 41
+  },
+  "correctly_recovered": 0,
+  "evaluated_bytes": [
+    0
+  ],
+  "seed": 42
+}

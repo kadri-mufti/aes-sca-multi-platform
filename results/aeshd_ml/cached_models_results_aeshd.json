@@ -1,0 +1,22 @@
+{
+  "dataset": "AES-HD",
+  "script": "main_models_cached_aeshd.py",
+  "rf": {
+    "best_recovered_key_byte_7": "0xE8",
+    "key_rank": 1,
+    "artifact": "..\\results\\aeshd_ml\\models\\rf_aeshd.pkl"
+  },
+  "svm": {
+    "best_recovered_key_byte_7": "0x89",
+    "key_rank": 1,
+    "artifact": "..\\results\\aeshd_ml\\models\\svm_aeshd.pkl"
+  },
+  "cnn": {
+    "best_recovered_key_byte_7": "0x4A",
+    "key_rank": 1,
+    "artifact": "..\\results\\aeshd_ml\\models\\cnn_aeshd.keras",
+    "epochs": 10,
+    "batch_size": 32
+  },
+  "seed": 42
+}

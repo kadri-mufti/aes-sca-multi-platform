@@ -1,0 +1,11 @@
+# STM32F4 ML Comparison (Pretty Summary)
+
+| Method | Metric | Value | Source |
+|---|---|---:|---|
+| RF | avg_key_rank(bytes listed) | 156.75 | rf_results_stm32f4.json |
+| SVM | avg_key_rank(bytes listed) | 179.75 | svm_results_stm32f4.json |
+| CNN1D | key_rank(byte 0) | 41 | cnn1d_results_stm32f4.json |
+| RF+FS | best_avg_rank(variance_results:85) | 87.00 | feature_selection_results_stm32f4.json |
+| RF-CACHED | avg_key_rank | 1.00 | cached_models_results_stm32f4.json |
+| SVM-CACHED | avg_key_rank | 1.00 | cached_models_results_stm32f4.json |
+| CNN-CACHED | key_rank | 1 | cached_models_results_stm32f4.json |

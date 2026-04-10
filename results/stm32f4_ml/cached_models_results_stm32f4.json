@@ -1,0 +1,48 @@
+{
+  "dataset": "STM32F4",
+  "script": "main_models_cached_stm32f4.py",
+  "bytes_evaluated": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "rf": {
+    "key_ranks": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
+    "avg_rank": 1.0,
+    "artifacts": [
+      "..\\results\\stm32f4_ml\\models\\rf_byte_0.pkl",
+      "..\\results\\stm32f4_ml\\models\\rf_byte_1.pkl",
+      "..\\results\\stm32f4_ml\\models\\rf_byte_2.pkl",
+      "..\\results\\stm32f4_ml\\models\\rf_byte_3.pkl"
+    ]
+  },
+  "svm": {
+    "key_ranks": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
+    "avg_rank": 1.0,
+    "artifacts": [
+      "..\\results\\stm32f4_ml\\models\\svm_byte_0.pkl",
+      "..\\results\\stm32f4_ml\\models\\svm_byte_1.pkl",
+      "..\\results\\stm32f4_ml\\models\\svm_byte_2.pkl",
+      "..\\results\\stm32f4_ml\\models\\svm_byte_3.pkl"
+    ]
+  },
+  "cnn": {
+    "byte": 0,
+    "key_rank": 1,
+    "artifact": "..\\results\\stm32f4_ml\\models\\cnn_byte_0.keras",
+    "epochs": 25,
+    "batch_size": 32
+  },
+  "seed": 42
+}

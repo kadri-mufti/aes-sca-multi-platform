@@ -1,0 +1,24 @@
+{
+  "method": "Support Vector Machine",
+  "kernel": "linear",
+  "dataset": "STM32F4",
+  "C": 1.0,
+  "gamma": "scale",
+  "n_training": 500,
+  "n_test": 2000,
+  "trace_window_samples": 2000,
+  "key_ranks": {
+    "0": 209,
+    "1": 48,
+    "2": 255,
+    "3": 207
+  },
+  "correctly_recovered": 0,
+  "evaluated_bytes": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seed": 42
+}
