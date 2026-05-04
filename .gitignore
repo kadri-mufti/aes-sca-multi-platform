@@ -18,4 +18,8 @@ __pycache__/
 
 /analysis
 /.github
+/.cache
+/.vscode
+/.claude
 /venv
+/.venv

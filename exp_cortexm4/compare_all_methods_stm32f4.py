@@ -84,9 +84,33 @@ def main(results_dir="results/stm32f4_ml", output_file="comparison_stm32f4.txt")
         else:
             ranks_list = key_ranks
         
-        avg_rank = np.mean(ranks_list) if ranks_list else 0
-        best_rank = min(ranks_list) if ranks_list else 0
-        worst_rank = max(ranks_list) if ranks_list else 0
+        if ranks_list:
+            avg_rank = np.mean(ranks_list)
+            best_rank = min(ranks_list)
+            worst_rank = max(ranks_list)
+        elif "variance_results" in data:
+            # Feature-selection results store rankings by selection threshold.
+            # Keep consistency with report values by preferring threshold 85.
+            var_results = data.get("variance_results", {})
+            chosen = var_results.get("85")
+            if chosen:
+                chosen_list = [float(v) for v in chosen]
+            else:
+                # Fallback: use the best average among available variance thresholds.
+                candidates = [
+                    [float(v) for v in ranks]
+                    for ranks in var_results.values()
+                    if isinstance(ranks, list) and ranks
+                ]
+                chosen_list = min(candidates, key=np.mean) if candidates else []
+
+            avg_rank = float(np.mean(chosen_list)) if chosen_list else 0
+            best_rank = int(min(chosen_list)) if chosen_list else 0
+            worst_rank = int(max(chosen_list)) if chosen_list else 0
+        else:
+            avg_rank = 0
+            best_rank = 0
+            worst_rank = 0
         
         summary.append({
             "method": method.replace(" ", "-"),
