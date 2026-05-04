@@ -55,6 +55,17 @@ Uses ANSSI's pre-trained 6-layer MLP (352K parameters) to break Boolean-masked A
 
 **Script:** `exp_ascad/main_dl_ascad.py`
 
+### 6. Cached Machine-Learning Experiments
+Additional additive experiments extend the classical baselines with cached RF, SVM, and 1D CNN models on the two currently available datasets in this workspace: STM32F4 (`traces.hdf5`) and AES-HD (`AES_HD_dataset/`). These scripts persist trained artifacts so repeated runs can reuse saved models instead of retraining. Please visit `https://github.com/kadri-mufti/aes-sca-multi-platform` for forked repo with ML experiments.
+
+**STM32F4 scripts:**
+- `exp_cortexm4/main_models_cached_stm32f4.py`
+- `exp_cortexm4/compare_all_methods_stm32f4_pretty.py`
+
+**AES-HD scripts:**
+- `exp_aeshd_hd/main_models_cached_aeshd.py`
+- `exp_aeshd_hd/compare_all_methods_aeshd_pretty.py`
+
 ---
 
 ## Results Summary
@@ -102,6 +113,20 @@ Uses ANSSI's pre-trained 6-layer MLP (352K parameters) to break Boolean-masked A
 
 **Key insight:** Boolean masking XORs the S-box input with a fresh random mask each trace. This completely destroys the correlation signal for 1st-order attacks. The deep learning model, trained on profiling traces, learns to exploit higher-order leakage that survives masking.
 
+#### Dataset 5 — Cached ML extensions on available local datasets
+
+| Dataset | Method | Result | Notes |
+|---------|--------|--------|-------|
+| STM32F4 | RF (cached) | **Rank 1 on bytes 0--3** | Cached pickle models reused on replay |
+| STM32F4 | SVM (cached) | **Rank 1 on bytes 0--3** | Linear SVM with cached scaler/model payload |
+| STM32F4 | 1D CNN (cached) | **Rank 1 on byte 0** | Saved as `.keras` for reuse |
+| STM32F4 | RF + variance FS | **Best avg. rank 97.5** | Variance windowing improved rank over full trace baseline |
+| AES-HD | RF (cached) | **Rank 1 on byte 7** | Weak HD leakage still exploitable |
+| AES-HD | SVM (cached) | **Rank 1 on byte 7** | Cached model reused on replay |
+| AES-HD | 1D CNN (cached) | **Rank 1 on byte 7** | Saved as `.keras` for reuse |
+
+**Key insight:** The cached ML experiments show that the STM32F4 board remains highly vulnerable under learned classifiers, while AES-HD still leaks enough structure for all three methods to recover the target byte in the current reduced-trace runs. The saved artifacts allow these experiments to be replayed without retraining.
+
 ---
 
 ## Repository Structure
@@ -120,7 +145,9 @@ cw-stm32f4-aes-sca/
 │
 ├── exp_aeshd_hd/                # AES-HD FPGA with HD leakage model
 │   ├── main_recovery_cpa_aeshd_hd.py
-│   └── main_recovery_dpa_aeshd_hd.py
+│   ├── main_recovery_dpa_aeshd_hd.py
+│   ├── main_models_cached_aeshd.py
+│   └── compare_all_methods_aeshd_pretty.py
 │
 ├── exp_cortexm0/                # ARM Cortex-M0 public dataset
 │   ├── main_recovery_cpa_cortexm0.py
@@ -131,13 +158,15 @@ cw-stm32f4-aes-sca/
 │   ├── main_recovery_dpa_ascad.py   DPA (fails — masking)
 │   ├── main_dl_ascad.py             DL MLP attack (succeeds)
 │   └── aes.py
-│
+
 └── results/                     # All output plots
     ├── cross_dataset_comparison.png
     ├── stm32f4/                     SPA, DPA, CPA, Template plots
     ├── cortexm0/                    CPA and DPA plots
     ├── aeshd/                       CPA and DPA plots (HD model)
-    └── ascad/                       CPA, DPA, DL score and rank plots
+    ├── ascad/                       CPA, DPA, DL score and rank plots
+    ├── stm32f4_ml/                  Cached ML summaries, comparison plots, model artifacts
+    └── aeshd_ml/                    Cached ML summaries, comparison plots, model artifacts
 ```
 
 ---
@@ -174,6 +203,15 @@ python main_recovery_dpa_cortexm0.py
 cd exp_aeshd_hd
 python main_recovery_cpa_aeshd_hd.py
 python main_recovery_dpa_aeshd_hd.py
+python main_models_cached_aeshd.py --dataset ..\analysis\AES_HD_dataset --output-dir ..\results\aeshd_ml
+python compare_all_methods_aeshd_pretty.py --results-dir ..\results\aeshd_ml
+```
+
+### STM32F4 cached ML experiments
+```bash
+cd exp_cortexm4
+python main_models_cached_stm32f4.py --hdf5 ..\analysis\traces.hdf5 --output-dir ..\results\stm32f4_ml
+python compare_all_methods_stm32f4_pretty.py --results-dir ..\results\stm32f4_ml
 ```
 
 ### ASCAD — download ASCAD_data.zip from data.gouv.fr/ASCAD, extract ASCAD.h5 and MLP model
